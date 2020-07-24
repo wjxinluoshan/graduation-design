@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>mpic</title>
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/bootstrap.min.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+  <script src="/yuns/js/alertHideAndShow.js"></script>
+
+  <link rel="stylesheet" href="/yuns/css/cusstyle.css">
+
+</head>
+<body>
+<div style="width: 100%;" class="mt-2">
+  <div class="input-group mb-3 ">
+    <input type="text" style="text-align: center" class="form-control" placeholder="输入关键字"
+           aria-describedby="basic-addon1" id="input_name_id">
+    <div class="input-group-prepend">
+      <button type="button" class="btn btn-outline-primary" id="btn_name_id" >搜索</button>
+    </div>
+  </div>
+  <div class="table-responsive" id="show_pic_table_id">
+
+    <div v-if="picArr.length>0" class="pl-2">
+      <button type="submit" class="btn btn-primary mb-2" style="width: 80px"
+              @click="indicatorCurPAge()">搜索
+      </button>
+      <input type="number" class="w-25" v-model="pageNumber" placeholder="输入页数">
+      <br>
+      <button type="button" class="btn btn-info" style="width: 80px" @click="flyPage(-1)">上一页
+      </button>
+      <button type="button" class="btn btn-info" style="width: 80px" @click="flyPage(1)">下一页
+      </button>
+      <span>{{currentPageIndex}}</span>
+    </div>
+    <table class="table ">
+      <thead>
+      <tr>
+        <th>资源图片</th>
+        <th>资源名</th>
+        <th>上传时间</th>
+        <th>下载/分享</th>
+        <th>链接</th>
+        <th>发布</th>
+        <th>删除</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-if="picArr.length>0">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <button type="button" class="btn btn-danger" style="width: 80px" @click="deletePic(-1)">
+            此页
+          </button>
+        </td>
+      </tr>
+      <tr v-for="(pic, index) in picArr">
+        <td style="horiz-align: center"><img :src="pic" style="max-width: 230px"></td>
+        <td>
+          <div style=" max-height: 100px; width: 150px;  overflow: auto;">{{picNameArr[index]}}
+          </div>
+        </td>
+        <td><div style="width: max-content">{{dateTime[index]}}</div></td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" class="btn btn-outline-primary" style="width: 80px"
+                    @click="downloadPic(index)">下载
+            </button>
+            <button type="button" style="width: 80px" class="btn btn-outline-secondary" :id="index"
+                    @mouseover="sharePic(index)"
+                    @mouseleave="unSharePic(index)">分享
+            </button>
+          </div>
+        </td>
+        <td>
+          <button type="button" style="width: 80px" class="btn btn-outline-dark"
+                  @click="copyLink(index)">复制
+          </button>
+        </td>
+        <td>
+          <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+            <button type="button" @click="publish(index)" style="width: 80px"
+                    class="btn btn-outline-success">发布
+            </button>
+            <button type="button" @click="unPublish(index)" style="width: 80px"
+                    class="btn btn-outline-danger">撤销
+            </button>
+          </div>
+        </td>
+        <td>
+          <button type="button" class="btn btn-danger" style="width: 80px"
+                  @click="deletePic(index)">删除
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+<script src="/yuns/js/userCommand.js"></script>
+<script src="/yuns/js/loadingEle.js"></script>
+<script src="/yuns/js/showOrHiddenLoadingDiv.js"></script>
+<!--<script src="/yuns/js/myPicCmd.js"></script>-->
+<script src="/yuns/js/myResCmd.js"></script>
+<script src="/yuns/js/searchResource.js"></script>
+<script src="/yuns/js/jquery.qrcode.min.js"></script>
+<script src="/yuns/js/shareTthirdParty.js"></script>
+</html>

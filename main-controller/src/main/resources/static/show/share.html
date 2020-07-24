@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>分享</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/bootstrap.min.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+
+  <link rel="stylesheet" href="/yuns/css/cusstyle.css">
+</head>
+<body>
+
+<div class="modal-dialog modal-dialog-centered " role="document" id="cmd_div_id">
+  <div class="modal-content shadow">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalCenterTitle">分享</h5>
+    </div>
+    <div class="modal-body">
+      <img :src="imgUrl" style="width: 150px">
+
+      <div style=" max-height: 100px;  width: 150px;  overflow: auto;">
+        {{content}}
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" style="width: 80px" class="btn btn-primary" @click="downloadOrRead()">
+        {{btnText}}
+      </button>
+    </div>
+  </div>
+</div>
+
+
+</body>
+<script>
+  let url = window.location.href.split('__yuns__')[1];
+  if (url.includes('/article/')) {
+    window.location.href = url;
+  }
+</script>
+<script>
+  const cmd_div_id_vue = new Vue({
+    el: '#cmd_div_id',
+    data: {
+      imgUrl: '',
+      content: '',
+      btnText: '下载'
+    },
+    methods: {
+      downloadOrRead: function () {
+        if (this.btnText === '下载') {
+          let link = document.createElement('a');
+          link.download = this.content;
+          link.href = url;
+          link.click();
+        }
+      }
+    }
+  });
+  let arr = url.split('?name=');
+  cmd_div_id_vue.content = decodeURI(arr[arr.length - 1]);
+  cmd_div_id_vue.btnText = '下载';
+  if (url.endsWith('.doc')) {
+    cmd_div_id_vue.imgUrl = '/yuns/sysimg/doc_icon.png';
+  } else if (url.endsWith('.docx')) {
+    cmd_div_id_vue.imgUrl = '/yuns/sysimg/docx_icon.png';
+  } else if (url.endsWith('.pdf')) {
+    cmd_div_id_vue.imgUrl = '/yuns/sysimg/pdf_icon.png';
+  } else if (url.endsWith('.xls')) {
+    cmd_div_id_vue.imgUrl = '/yuns/sysimg/xls_icon.png';
+  } else if (url.endsWith('.xlsx')) {
+    cmd_div_id_vue.imgUrl = '/yuns/sysimg/xlsx_icon.png';
+  } else if (url.endsWith('.ppt')) {
+    cmd_div_id_vue.imgUrl = '/yuns/sysimg/ppt_icon.png';
+  } else if (url.endsWith('.zip')) {
+    cmd_div_id_vue.imgUrl = '/yuns/sysimg/zip.png';
+  } else if (url.endsWith('.txt')) {
+    cmd_div_id_vue.imgUrl = '/yuns/sysimg/txt.png';
+  } else if (url.endsWith('.exe')) {
+    cmd_div_id_vue.imgUrl = '/yuns/sysimg/exe.png';
+  } else {
+    cmd_div_id_vue.imgUrl = url;
+  }
+
+</script>
+</html>

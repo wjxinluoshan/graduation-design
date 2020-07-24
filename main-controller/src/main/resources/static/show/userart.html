@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajobs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/bootstrap.min.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+
+  <link rel="stylesheet" href="/yuns/css/cusstyle.css">
+</head>
+<body>
+<div class="input-group mb-3 mt-2">
+  <input type="text" style="text-align: center" class="form-control" placeholder="输入文章名"
+         aria-describedby="basic-addon1" id="input_artname_id">
+  <div class="input-group-prepend">
+    <button type="button" class="btn btn-outline-primary" id="btn_name_id" >搜索</button>
+  </div>
+</div>
+
+<div class="table-responsive mt-2" id="show_res_table_id">
+  <div v-if="resTitleNames.length>0" class="pl-2">
+    <button type="submit"style="width: 80px" class="btn btn-primary mb-2" @click="indicatorCurPAge()">搜索</button>
+    <input type="number" class="w-25" v-model="pageNumber" placeholder="输入页数">
+    <br>
+    <button type="button" style="width: 80px"class="btn btn-info" @click="flyPage(-1)">上一页</button>
+    <button type="button"style="width: 80px" class="btn btn-info" @click="flyPage(1)">下一页</button>
+    <span>{{currentPageIndex}}</span>
+  </div>
+  <table class="table" >
+    <thead>
+    <tr>
+      <th >文章名</th>
+      <th>阅读次数</th>
+      <th>阅读</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="(rTN,index) in resTitleNames">
+      <td><div style=" max-height: 100px;  width: 150px;  overflow: auto;">{{rTN}}</div></td>
+      <td><div style=" max-height: 100px;  width: 150px;  overflow: auto;">{{reads[index]}}</div></td>
+      <td>
+        <button type="button"style="width: 80px" class="btn btn-primary"
+                @click="gotoRes(index)">阅读
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+</body>
+<script src="/yuns/js/loadingEle.js"></script>
+<script src="/yuns/js/showOrHiddenLoadingDiv.js"></script>
+<script src="/yuns/js/userart.js"></script>
+
+</html>

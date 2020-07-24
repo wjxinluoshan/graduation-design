@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajobs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/bootstrap.min.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+
+  <link rel="stylesheet" href="/yuns/css/cusstyle.css">
+</head>
+<body>
+<div class="table-responsive mt-2" id="show_res_table_id">
+  <div v-if="resUrls.length>0" class="pl-2">
+    <button type="submit"style="width: 80px" class="btn btn-primary mb-2" @click="indicatorCurPAge()">搜索</button>
+    <input type="number" class="w-25" v-model="pageNumber" placeholder="输入页数">
+    <br>
+    <button type="button"style="width: 80px" class="btn btn-info" @click="flyPage(-1)">上一页</button>
+    <button type="button"style="width: 80px" class="btn btn-info" @click="flyPage(1)">下一页</button>
+    <span>{{currentPageIndex}}</span>
+  </div>
+  <table class="table" >
+    <thead>
+    <tr>
+      <th >资源图片</th>
+      <th >资源名</th>
+      <th>发布时间</th>
+      <th>下载次数</th>
+      <th >下载</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-for="(rU,index) in resUrls">
+      <td><img :src="rU"   style="max-width: 230px"
+      /></td>
+      <td><div style=" max-height: 100px;  width: 150px;  overflow: auto;">{{resNames[index]}}</div></td>
+      <td><div style=" max-height: 100px;  width: 150px;  overflow: auto;">{{dateTime[index]}}</div></td>
+      <td><div style=" max-height: 100px;  width: 150px;  overflow: auto;">{{downloads[index]}}</div></td>
+      <td>
+        <button type="button"style="width: 80px" class="btn btn-primary"
+                @click="download(index)">下载
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+<script src="/yuns/js/loadingEle.js"></script>
+<script src="/yuns/js/showOrHiddenLoadingDiv.js"></script>
+<script src="/yuns/js/pubUserResource.js"></script>
+</html>

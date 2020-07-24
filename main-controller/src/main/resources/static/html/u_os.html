@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ores</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/bootstrap.min.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+  <link rel="stylesheet" href="/yuns/css/cusstyle.css">
+  <script src="/yuns/js/alertHideAndShow.js"></script>
+
+</head>
+<body>
+<div>
+  <input id="choose_file_input_id" class="m-2" type="file" multiple name="title" accept=".txt,.zip,.exe"/>
+</div>
+<div class="table-responsive">
+  <table class="table " id="show_pic_table_id">
+    <thead>
+    <tr>
+      <th >资源图片</th>
+      <th >资源名</th>
+      <th >删除</th>
+      <th>上传</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-if="picArr.length>0">
+      <td></td>
+      <td></td>
+      <td>
+        <button type="button" class="btn btn-danger" @click="deletePic(-1)">全部</button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-primary" @click="uploadPic(-1)">全部</button>
+      </td>
+    </tr>
+    <tr v-for="(pic, index) in picArr">
+      <td style="horiz-align: center"><img :src="pic" style="max-width: 230px"></td>
+      <td><div style=" max-height: 100px;  width: 150px;  overflow: auto;">{{picNameArr[index]}}</div></td>
+      <td>
+        <button type="button" class="btn btn-danger" style="width: 80px" @click="deletePic(index)">删除</button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-primary" style="width: 80px" @click="uploadPic(index)">上传</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+<script src="/yuns/js/userCommand.js"></script>
+<script src="/yuns/js/loadingEle.js"></script>
+<script src="/yuns/js/showOrHiddenLoadingDiv.js"></script>
+<script src="/yuns/js/picCmd.js"></script>
+</html>

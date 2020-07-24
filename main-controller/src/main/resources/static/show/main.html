@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ajobs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/bootstrap.min.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+
+
+  <link rel="stylesheet" href="/yuns/css/cusstyle.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm" id="nav_id">
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+          aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" href="/yuns/show/users.html" target="mainFrame">用户</a>
+      <a class="nav-item nav-link" href="/yuns/show/pics.html" target="mainFrame">图片</a>
+      <a class="nav-item nav-link" href="/yuns/show/docs.html" target="mainFrame">文档</a>
+      <a class="nav-item nav-link" href="/yuns/show/ores.html" target="mainFrame">其他资源</a>
+      <a class="nav-item nav-link" href="/yuns/show/arts.html" target="mainFrame">文章</a>
+    </div>
+  </div>
+</nav>
+<div id="show_content_div_id">
+  <iframe name="mainFrame" width="100%" height="100%" frameborder="0"
+  ></iframe>
+</div>
+</body>
+<script>
+  $('#show_content_div_id').css('height', window.innerHeight - $('#nav_id').height() + 'px');
+  //上来直接跳转至指定的url
+  window.frames['mainFrame'].location = '/yuns/show/users.html';
+</script>
+<script src="/yuns/js/network.js"></script>
+</html>

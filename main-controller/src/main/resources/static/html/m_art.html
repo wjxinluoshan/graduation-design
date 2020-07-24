@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>marticle</title>
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/bootstrap.min.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+  <script src="/yuns/js/alertHideAndShow.js"></script>
+
+  <style>
+    .table td {
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body>
+<div class="input-group mb-3 mt-2">
+  <input type="text" style="text-align: center" class="form-control" placeholder="输入关键字"
+         aria-describedby="basic-addon1" id="input_name_id">
+  <div class="input-group-prepend">
+    <button type="button" class="btn btn-outline-primary" id="btn_name_id">搜索</button>
+  </div>
+</div>
+<div class="table-responsive" id="show_pic_table_id">
+  <div v-if="picArr.length>0" class="pl-2">
+    <button type="submit" class="btn btn-primary mb-2" style="width: 80px"
+            @click="indicatorCurPAge()">搜索
+    </button>
+    <input type="number" class="w-25" v-model="pageNumber" placeholder="输入页数">
+    <br>
+    <button type="button" class="btn btn-info" style="width: 80px" @click="flyPage(-1)">上一页</button>
+    <button type="button" class="btn btn-info" style="width: 80px" @click="flyPage(1)">下一页</button>
+    <span>{{currentPageIndex}}</span>
+  </div>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>文章链接名</th>
+      <th>文章名</th>
+      <th>查看/分享</th>
+      <th>修改</th>
+      <th>评论</th>
+      <th>链接</th>
+      <th>发布</th>
+      <th>删除</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr v-if="picArr.length>0">
+      <td>
+        <button type="button" class="btn btn-warning" style="width: 80px" @click="refreshPic" >刷新</button>
+      </td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>
+        <button type="button" class="btn btn-danger show" style="width: 80px"
+                @click="deletePic(-1)">此页
+        </button>
+      </td>
+    </tr>
+    <tr v-for="(pic, index) in picArr">
+      <td>
+        <div style=" max-height: 100px; width: 150px;  overflow: auto;">{{pic}}</div>
+      </td>
+      <td>
+        <div style=" max-height: 100px; width: 150px;  overflow: auto;">{{picNameArr[index]}}</div>
+      </td>
+      <td>
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <button type="button" class="btn btn-outline-primary" style="width: 80px"
+                  @click="lookPic(index)">查看
+          </button>
+          <button type="button" class="btn btn-outline-secondary" style="width: 80px" :id="index"
+                  @mouseover="sharePic(index)"
+                  @mouseleave="unSharePic(index)">分享
+          </button>
+        </div>
+      </td>
+
+      <td>
+        <button type="button" class="btn btn-outline-info" style="width: 80px"
+                @click="editPic(index)">修改
+        </button>
+      </td>
+      <td>
+        <button type="button" class="btn btn-outline-success" style="width: 80px"
+                @click="checkComments(index)">评论
+        </button>
+      </td>
+      <td>
+        <button type="button" style="width: 80px" class="btn btn-outline-dark"
+                @click="copyLink(index)">复制
+        </button>
+      </td>
+      <td>
+        <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
+          <button type="button" @click="publish(index)" style="width: 80px"
+                  class="btn btn-outline-success">发布
+          </button>
+          <button type="button" @click="unPublish(index)" style="width: 80px"
+                  class="btn btn-outline-danger">撤销
+          </button>
+        </div>
+      </td>
+      <td>
+        <button type="button" class="btn btn-danger" style="width: 80px" @click="deletePic(index)">
+          删除
+        </button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+</body>
+<script src="/yuns/js/userCommand.js"></script>
+<script src="/yuns/js/loadingEle.js"></script>
+<script src="/yuns/js/showOrHiddenLoadingDiv.js"></script>
+<!--<script src="/yuns/js/myPicCmd.js"></script>-->
+<script src="/yuns/js/myResCmd.js"></script>
+<script src="/yuns/js/searchResource.js"></script>
+<script src="/yuns/js/jquery.qrcode.min.js"></script>
+<script src="/yuns/js/shareTthirdParty.js"></script>
+
+</html>

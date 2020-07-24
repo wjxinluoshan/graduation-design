@@ -1,0 +1,33 @@
+.table td {
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table td div {
+  transform: translateX(-50%);
+  margin-left: 50%;
+}
+
+.table th {
+  text-align: center;
+}
+
+.btn {
+  width: 80px;
+}
+
+
+.text {
+  max-height: 100px;
+  max-width: 300px;
+  overflow: auto;
+}
+
+a:hover {
+  cursor: pointer;
+}
+
+
+ul li{
+  text-align: center;
+}

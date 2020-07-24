@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>用户</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/bootstrap.min.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+
+  <link rel="stylesheet" href="/yuns/css/cusstyle.css">
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm" id="nav_id">
+  <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarNavAltMarkup" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+    <div class="navbar-nav">
+      <a class="nav-item nav-link active" id="a_pic_id" href="/yuns/show/userpic.html"
+         target="mainFrame">图片</a>
+      <a class="nav-item nav-link" id="a_doc_id" href="/yuns/show/userdoc.html"
+         target="mainFrame">文档</a>
+      <a class="nav-item nav-link" id="a_ores_id" href="/yuns/show/userores.html"
+         target="mainFrame">其他资源</a>
+      <a class="nav-item nav-link" id="a_art_id" href="/yuns/show/userart.html"
+         target="mainFrame">文章</a>
+    </div>
+  </div>
+  <div id="nav_ul_id">
+    <img :src="pictureUrl" style="width:30px;height:30px;margin-right:10px;border-radius:50%">
+    <span>{{username}}</span>
+  </div>
+</nav>
+
+<div id="show_content_div_id" >
+  <iframe name="mainFrame" width="100%" height="90%" frameborder="0"
+  ></iframe>
+</div>
+</body>
+<script>
+  $('#show_content_div_id').css('height', window.innerHeight - $('#nav_id').height() + 'px');
+  var id = window.location.href.split("=")[1];
+
+  $('#a_pic_id').attr('href', '/yuns/show/userpic.html?id=' + id);
+  $('#a_doc_id').attr('href', '/yuns/show/userdoc.html?id=' + id);
+  $('#a_ores_id').attr('href', '/yuns/show/userores.html?id=' + id);
+  $('#a_art_id').attr('href', '/yuns/show/userart.html?id=' + id);
+
+  //上来直接跳转至指定的url
+  window.frames['mainFrame'].location = '/yuns/show/userpic.html?id=' + id;
+
+  const nav_ul_id_vue = new Vue({
+    el: '#nav_ul_id',
+    data: {
+      username: 'wjx',
+      pictureUrl: '/yuns/img/logo.png'
+    },
+    methods: {}
+  });
+
+  $.post('/yuns/user/info', {id: id}, function (data) {
+    if (data.username) {
+      //返回数据json形式
+      if (data.username.length > 5) {
+        nav_ul_id_vue.username = data.username.substring(0, 5) + '...'
+      } else {
+        nav_ul_id_vue.username = data.username;
+      }
+      nav_ul_id_vue.pictureUrl = data.pictureUrl;
+    }
+  }).fail(function (data) {
+    console.log(data)
+  })
+</script>
+<script src="/yuns/js/network.js"></script>
+</html>

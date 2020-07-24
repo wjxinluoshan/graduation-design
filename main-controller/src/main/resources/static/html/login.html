@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>登录</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/bootstrap.min.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+  <script src="/yuns/js/alertHideAndShow.js"></script>
+
+</head>
+<body>
+
+<!--&lt;!&ndash; Button trigger modal &ndash;&gt;-->
+<!--<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">-->
+<!--  Launch demo modal-->
+<!--</button>-->
+
+<!-- Modal -->
+<div class="modal-dialog modal-dialog-centered " role="document" id="login_div_id">
+  <div class="modal-content shadow">
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalCenterTitle">登录</h5>
+    </div>
+    <div class="modal-body">
+      <div class="input-group mb-3">
+
+        <input type="text" id="u_input_id" class="form-control" v-model="username"
+               placeholder="请输入用户名" style="text-align: center" aria-label="Username"
+               aria-describedby="basic-addon1" autocomplete="off">
+      </div>
+
+      <div class="input-group mb-3">
+        <input type="password" class="form-control" v-model="password"
+               style="text-align: center" placeholder="请输入密码" aria-label="Username"
+               aria-describedby="basic-addon1" autocomplete="off">
+      </div>
+      <div class="mt-2" style="text-align: center">
+        <button type="button" class="btn btn-primary" @click="click(0)">登录</button>
+        <button type="button" class="btn btn-success" @click="click(1)">注册</button>
+        <button type="button" class="btn btn-danger" @click="click(2)">重置</button>
+        <button type="button" class="btn btn-warning" @click="click(3)">找回密码</button>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-link"><a href="/yuns/show/main.html">前往大厅</a></button>
+    </div>
+  </div>
+</div>
+
+</body>
+<script src="/yuns/js/jsencrypt.js"></script>
+<script src="/yuns/js/userCommand.js"></script>
+<script src="/yuns/js/loadingEle.js"></script>
+<script src="/yuns/js/showOrHiddenLoadingDiv.js"></script>
+<script src="/yuns/js/login.js"></script>
+</html>

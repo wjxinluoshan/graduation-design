@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>评论</title>
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/bootstrap.min.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+  <script src="/yuns/js/alertHideAndShow.js"></script>
+  <link rel="stylesheet" href="/yuns/css/cusstyle.css">
+</head>
+<body>
+<div>
+  </br>
+  <h3 id="art_title_h3_id"></h3>
+  </br>
+  <div class="table-responsive" id="show_comments_table_id">
+    <div v-if="comIds.length>0" class="pl-2">
+      <button type="submit" class="btn btn-primary mb-2" style="width: 80px"
+              @click="indicatorCurPAge()">搜索
+      </button>
+      <input type="number" class="w-25" v-model="pageNumber" placeholder="输入页数">
+      <br>
+      <button type="button" class="btn btn-info" style="width: 80px" @click="flyPage(-1)">上一页
+      </button>
+      <button type="button" class="btn btn-info" style="width: 80px" @click="flyPage(1)">下一页
+      </button>
+      <span>{{currentPageIndex}}</span>
+    </div>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>邮箱</th>
+        <th>评论时间</th>
+        <th>评论内容</th>
+        <th>回复</th>
+        <th>删除</th>
+        <th>通过</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr v-if="comIds.length>0">
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>
+          <button type="button" class="btn btn-danger" style="width: 80px" @click="deleteCom(-1)">此页
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-success" style="width: 80px" @click="passCom(-1)">此页
+          </button>
+        </td>
+      </tr>
+      <tr v-for="(email, index) in emails">
+        <td>{{email}}</td>
+        <td>{{dateTimes[index]}}</td>
+        <td>
+          <div style=" max-height: 150px;width: 150px;overflow: auto;" v-html="comments[index]">
+<!--            {{comments[index]}}-->
+          </div>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-primary" style="width: 80px"
+                  @click="replyCom(index)">回复
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" style="width: 80px"
+                  @click="deleteCom(index)">删除
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-success" style="width: 80px"
+                  @click="passCom(index)">
+            {{passText[index]}}
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <button type="button" style="width: 80px" class="btn btn-outline-primary"
+                  @click="refreshCom">刷新
+          </button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+</body>
+<script src="/yuns/js/loadingEle.js"></script>
+<script src="/yuns/js/showOrHiddenLoadingDiv.js"></script>
+<script src="/yuns/js/userCommand.js"></script>
+<script src="/yuns/js/art_comment.js"></script>
+<script src="/yuns/js/network.js"></script>
+</html>

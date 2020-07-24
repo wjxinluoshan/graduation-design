@@ -1,0 +1,61 @@
+define-datasource:
+  driver: com.mysql.cj.jdbc.Driver
+  url-yuns: jdbc:mysql://localhost:3306/yuns?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CTT
+  url-yuns-art-comment: jdbc:mysql://localhost:3306/yuns_art_comment?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CTT
+  url-yuns-share: jdbc:mysql://localhost:3306/yuns_share?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=CTT
+  username: root
+  password: wjx
+
+spring:
+  datasource:
+    driver: ${define-datasource.driver}
+    url: ${define-datasource.url-yuns}
+    username: ${define-datasource.username}
+    password: ${define-datasource.password}
+  servlet:
+    multipart:
+      maxFileSize: 1024MB
+      maxRequestSize: 1024MB
+  banner:
+    location: yuns.txt
+  mail:
+    host: smtp.qq.com
+    port: 465
+    username: *******
+    password: *******
+    default-encoding: UTF-8
+    properties:
+      mail:
+        smtp:
+          ssl:
+            enable: true
+          auth: true
+          socketFactoryClass: javax.net.ssl.SSLSocketFactory
+  mvc:
+    servlet:
+      path: /yuns
+  aop:
+    proxy-target-class: true
+
+custom:
+  article:
+    comment:
+      driver: ${define-datasource.driver}
+      url: ${define-datasource.url-yuns-art-comment}
+      username: ${define-datasource.username}
+      password: ${define-datasource.password}
+  pub:
+    comment:
+      driver: ${define-datasource.driver}
+      url: ${define-datasource.url-yuns-share}
+      username: ${define-datasource.username}
+      password: ${define-datasource.password}
+
+
+#spring.mvc.servlet.path=/yuns/
+#spring.mvc.view.prefix=/WEB-INF/classes/static/jsp/
+#spring.mvc.view.suffix=.jsp
+server:
+  port: 8888
+
+

@@ -1,0 +1,118 @@
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>---yuns_title---</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+  <link rel="stylesheet" type="text/css" href="/yuns/css/showCommentArea.css">
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/bootstrap.min.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+  <script src="/yuns/js/alertHideAndShow.js"></script>
+
+  <style>
+
+    .article_title_h2 {
+      margin-left: 17%;
+    }
+
+    img {
+      max-width: 400px;
+    }
+  </style>
+</head>
+<body>
+<h1 class="article_title_h2" id="page_top_id">---yuns_article_title---</h1>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-10">
+      <!-- 文章的内容显示区域 -->
+      <div class="show_article-content_div">
+        ---yuns_content---
+      </div><div class="show_comment_area_div" id="show_comment_area_div">
+        <!--
+            写评论的区域
+         -->
+        <div class="comment_area_div">
+          <p>{{commentsNumber}}条评论:</p>
+          <!-- 被评论的部分-->
+          <div :style="{display: byCommentedDivIsShowing}">
+            <div class="previous_comment_div">
+              <p style="width: 70%;margin: 1%">
+                {{previousCommentedUserId}}</p>
+              <img class="cancel_response_comment_img"
+                   @click="cancelCommentedDiv"
+                   style="width: 5%;float: right;margin-top: -5.2%;"
+                   src="/yuns/sysimg/failure_icon.png"/>
+            </div>
+            <!-- 显示回复的信息 -->
+            <p class="previous_comment_div"
+               style="margin-top: 1%;padding: 10px" v-html="comment1"></p>
+          </div>
+
+          <div class="markdown" id="replay_area_div_id">
+            <textarea contenteditable="true" placeholder="写下你的评论,评论最多300字!!!"
+                      class="markdown_editor" v-model="comment2"></textarea>
+          </div>
+          <input type="email" maxlength="50" class="w-75 mt-2" v-model="email" placeholder="邮箱（不公开">
+          <div class="btn-group mt-2" role="group" aria-label="Basic example">
+            <button type="button" style="width: 80px" class="btn btn-outline-success"
+                    @click="publish">发布
+            </button>
+            <button type="button" style="width: 80px" class="btn btn-outline-danger"
+                    @click="refreshCom">刷新
+            </button>
+          </div>
+        </div>
+        <br>
+        <!--  评论显示区-->
+        <div class="mt-2" :style="{display:commentAreaIsShow}">
+          <div class="media" v-for="(comment,index) in comments">
+            <img src="/yuns/sysimg/comment_icon.png" class="mr-3"/>
+            <div class="media-body">
+              <h5 class="mt-0">{{emails[index]}}</h5>
+              <h6>{{dateTimes[index]}}</h6>
+
+              <div class="media mt-3 mb-2" v-if="byComEmails.length>0">
+                <img v-if="byComEmails[index]!==''" src="/yuns/sysimg/comment_icon.png"
+                     class="mr-3"/>
+                <div class="media-body" v-if="byComEmails[index]!==''">
+                  <h5 class="mt-0">{{byComEmails[index]}}</h5>
+                  <p v-html="byComments[index]"></p>
+                </div>
+              </div>
+              <b><p v-html="comment"></p></b>
+              <div class="mt-2 ml-5"><img class="comment_reply_img" style="width: 30px"
+                                          src="/yuns/sysimg/reply_icon.png" @click="reply(index)"/>
+              </div>
+            </div>
+          </div>
+          <div v-if="commentAreaIsShow==='block'" class="pl-2">
+            <button type="button" style="width: 80px" class="btn btn-info" @click="flyPage(-1)">
+              上一页
+            </button>
+            <button type="button" style="width: 80px" class="btn btn-info" @click="flyPage(1)">下一页
+            </button>
+            <span>{{currentPageIndex}}</span>
+          </div>
+        </div>
+      </div>
+      <ul id="top_ul_id" style="opacity: 0;right: 1%;top: 80%;position: fixed;list-style:none">
+        <li style="display: list-item;"><a
+            href="#page_top_id"><i
+            style="font-size: 70px">top</i></a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</body>
+<script src="/yuns/js/loadingEle.js"></script>
+<script src="/yuns/js/showOrHiddenLoadingDiv.js"></script>
+<script src="/yuns/js/article_template_share.js"></script>
+
+</html>

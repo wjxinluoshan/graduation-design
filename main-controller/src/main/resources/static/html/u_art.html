@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>article</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link type="images/x-icon" rel="shortcut icon" href="/yuns/img/logo.png">
+
+  <link rel="stylesheet" href="/yuns/css/bootstrap.min.css">
+
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/js/vue.js"></script>
+  <script src="/yuns/js/popper.min.js"></script>
+
+  <link rel="stylesheet" href="../editor.md/css/editormd.css"/>
+
+  <script src="../editor.md/editormd.min.js"></script>
+  <script src="../ckeditor/ckeditor.js"></script>
+
+  <link rel="stylesheet" href="/yuns/editor.md/css/editormd.css"/>
+  <script src="/yuns/js/vue.js"></script>
+  <!--  jQuery-->
+  <script src="/yuns/js/jquery-3.4.1.min.js"></script>
+  <script src="/yuns/editor.md/editormd.min.js"></script>
+  <script src="/yuns/ckeditor/ckeditor.js"></script>
+  <script src="/yuns/js/loadingEle.js"></script>
+  <script src="/yuns/js/showOrHiddenLoadingDiv.js"></script>
+  <script src="/yuns/js/alertHideAndShow.js"></script>
+
+</head>
+<body>
+
+<div class="editor_div container mt-2" style="text-align: center" id="editor_div_id">
+  <div class="input-group mb-3 ">
+    <input type="text" style="text-align: center" class="form-control" placeholder="文章名"
+           v-model="titleName" aria-label="Username" aria-describedby="basic-addon1">
+  </div>
+  <div style="margin-top: 5px;text-align: center">
+    <button type="button" class="btn btn-primary" style="width: 80px" @click="uploadArt"
+            id="btn_id">上传
+    </button>
+    <button type="button" class="btn btn-outline-success" style="width: 80px"
+            @click="chooseRichEditor">富文本
+    </button>
+    <button type="button" class="btn btn-outline-info" style="width: max-content"
+            @click="chooseMDEditor">Markdown
+    </button>
+
+  </div>
+
+</div>
+<div>
+  <br>
+  <div id="editor_textarea_markdown">
+    <textarea style="display:none;"></textarea>
+  </div>
+  <div id="editor_textarea_div">
+    <textarea name="editor_textarea" id="editor_textarea" rows="40"
+              cols="80"> 请在这里编写您的文章!!!</textarea>
+  </div>
+</div>
+</body>
+<script src="/yuns/js/userCommand.js"></script>
+<script src="/yuns/js/u_art.js"></script>
+</html>
